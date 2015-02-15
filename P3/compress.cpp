@@ -24,8 +24,8 @@ void writeInt(ofstream &out, int num){
 }
 
 void writeHeader(ofstream &out, vector<int> &freqs, int count){
+  writeInt(out, count);
   for (int i = 0; i < freqs.size(); i++){
-    writeInt(out, count);
     
     if (freqs[i]){
       unsigned char c = i;
@@ -54,8 +54,6 @@ int main(int argc, char* argv[]){
 	
 	//create a int vector of frequency of each symbol
 	vector<int> freqs(256, 0);
-	//count is used for header
-  int count = 0;
   
 	//calculate frequency of each symbol
 	if (ifs.is_open()){
@@ -89,14 +87,15 @@ int main(int argc, char* argv[]){
   writeHeader(ofs, freqs, hcTree.getCount());  
   
   //encode the infile
-  if (ifs.is_open()){
+  if (!ifs.eof()){
 		unsigned char ch;
 		
 		while (ifs.good()){
 			ch = ifs.get();
       hcTree.encode(ch, ofs);
 		}
-		
+		//ofs.put(255);
+   
 		if (!ifs.eof()){
 			printf("error: cannot read the end of file!\n");
 		  return -1;
