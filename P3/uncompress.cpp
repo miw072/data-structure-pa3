@@ -1,3 +1,9 @@
+/**
+ * compress.cpp for PA3
+ * Author: Mingxuan Wang(A53077257) & Jingyu Wang(TO DO) 2015/2/11
+ * This cpp file is used to uncompress an infile to an outfile using Huffman Coding
+ */
+ 
 #include "HCTree.hpp"
 #include <iostream>
 #include <fstream>
@@ -44,7 +50,7 @@ int main(int argc, char* argv[]){
 	std::ofstream ofs;
 	ofs.open(outfile, std::ofstream::out | std::ofstream::app);
  
-  int total = 0;
+  unsigned long int total = 0;
   for (int i = 0; i < freqs.size(); i++){
     total += freqs[i];
   }

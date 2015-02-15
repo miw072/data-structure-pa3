@@ -11,6 +11,10 @@
 #include <set>
 #include <string>
 
+/* writeInt
+ * This method is to write a int to the output file
+ * Input: out is the output stream, num is the int to be written
+ */
 void writeInt(ofstream &out, int num){
   unsigned char c;
   c = (num >> 24);
@@ -23,6 +27,12 @@ void writeInt(ofstream &out, int num){
   out.put(c);
 }
 
+/* writeHeader
+ * This method is to write the header to the output file
+ * The foramt is : first write the total number of ints to output file,
+                   then write each freqs[i] which is not 0 to outputfile together with the char
+ * Input: out is the output stream, freqs is the vector of each char's frequency, count is the number of freqs[i]!=0
+ */
 void writeHeader(ofstream &out, vector<int> &freqs, int count){
   writeInt(out, count);
   for (int i = 0; i < freqs.size(); i++){
@@ -37,8 +47,9 @@ void writeHeader(ofstream &out, vector<int> &freqs, int count){
   }
 }
 
-
-
+/* main
+ * This method is the main method of command line program 
+ */
 int main(int argc, char* argv[]){
 	if (argc != 3){
 		printf("Invalid command line input. Please follow the instructions and restart!\n");
@@ -59,8 +70,13 @@ int main(int argc, char* argv[]){
 	if (ifs.is_open()){
 		unsigned char ch;
 		
-		while (ifs.good()){
+		while (1){
 			ch = ifs.get();
+      
+      //if reach to the eof, break
+      if (!ifs.good()){
+        break;
+      }
 			freqs[ch] ++;
 		}
 		
@@ -76,6 +92,7 @@ int main(int argc, char* argv[]){
 	HCTree hcTree;
 	hcTree.build(freqs);
 	
+  //clear the error state and move back to the begin of the file
   ifs.clear();
   ifs.seekg(0);
  
@@ -87,12 +104,12 @@ int main(int argc, char* argv[]){
   writeHeader(ofs, freqs, hcTree.getCount());  
   
   //encode the infile
-  if (!ifs.eof()){
-		unsigned char ch;
-		
+  
+  if (ifs.is_open()){
+	  unsigned char ch = ifs.get();	
 		while (ifs.good()){
-			ch = ifs.get();
       hcTree.encode(ch, ofs);
+      ch = ifs.get();
 		}
 		//ofs.put(255);
    
