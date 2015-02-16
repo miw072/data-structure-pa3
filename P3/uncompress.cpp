@@ -1,6 +1,6 @@
 /**
  * compress.cpp for PA3
- * Author: Mingxuan Wang(A53077257) & Jingyu Wang(TO DO) 2015/2/11
+ * Author: Mingxuan Wang(A53077257) & Jingjue Wang(TO DO) 2015/2/11
  * This cpp file is used to uncompress an infile to an outfile using Huffman Coding
  */
  
