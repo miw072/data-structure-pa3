@@ -11,11 +11,19 @@
 #include <set>
 #include <string>
 
+/* readInt
+ * This method is to read a int from the input file
+ * Input: in is the input stream
+ */
 unsigned int readInt(ifstream &in){
   unsigned int num = (in.get()<<24) | (in.get()<<16) | (in.get()<<8) | (in.get());
   return num;
 }
 
+/* readHeader
+ * This method is to read the header from the file
+ * Input: in is the input stream, freqs is the vector of each char's frequency, count is the number of freqs[i]!=0
+ */
 void readHeader(ifstream &in, vector<int> &freqs, int count){
   for (int i = 0; i < count; i++){
     unsigned char ch = in.get();
@@ -24,6 +32,9 @@ void readHeader(ifstream &in, vector<int> &freqs, int count){
   }
 }
 
+/* main
+ * This method is the main method of command line program 
+ */
 int main(int argc, char* argv[]){
   if (argc != 3){
 		printf("Invalid command line input. Please follow the instructions and restart!\n");
@@ -50,7 +61,7 @@ int main(int argc, char* argv[]){
 	std::ofstream ofs;
 	ofs.open(outfile, std::ofstream::out | std::ofstream::app);
  
-  unsigned long int total = 0;
+  unsigned int total = 0;
   for (int i = 0; i < freqs.size(); i++){
     total += freqs[i];
   }

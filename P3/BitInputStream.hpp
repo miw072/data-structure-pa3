@@ -22,10 +22,10 @@ class BitInputStream{
         bitset<8> buffer;
         string origin;
         int count;
-        unsigned long int sum;
+        //unsigned int sum;
         
     public :
-        BitInputStream(istream &input, unsigned long int total): in(input){
+        BitInputStream(istream &input, unsigned int total): in(input){
             buffer.reset();
             count = 0;
             sum = total;
@@ -34,6 +34,8 @@ class BitInputStream{
         void get();
         
         bool getBit();
+        
+        bool isEmpty();
 };
 
 

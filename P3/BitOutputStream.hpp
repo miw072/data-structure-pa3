@@ -22,14 +22,14 @@ class BitOutputStream{
         ostream &out;
         bitset<8> buffer;
         int count;
-        unsigned long int total;
+        unsigned int totalBits;
         string code;
         
     public :
         BitOutputStream(ostream &output):out(output){
             buffer.reset();
             count = 0;
-            total = 0;
+            totalBits = 0;
             code = "";
         }
         
