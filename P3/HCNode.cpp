@@ -1,6 +1,6 @@
 /**
  * HCNode.cpp for PA3
- * Author: Mingxuan Wang(A53077257) & Jingjue Wang(TO DO) 2015/2/11
+ * Author: Mingxuan Wang(A53077257) & Jingjue Wang(A97007709) 2015/2/11
  * This cpp file is used to define HCNode, overload the '<' operator
  * Note that '<' is used for priority compare.
  */
