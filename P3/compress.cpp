@@ -4,6 +4,7 @@
  * This cpp file is used to compress an infile to an outfile using Huffman Coding
  */
  
+ 
 #include "HCTree.hpp"
 #include <iostream>
 #include <fstream>

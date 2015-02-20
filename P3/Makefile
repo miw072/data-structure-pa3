@@ -19,6 +19,7 @@ all: compress uncompress
 #BitInputStream.o: BitInputStream.hpp
 
 
+
 compress: HCNode.o HCTree.o
 
 uncompress: HCNode.o HCTree.o

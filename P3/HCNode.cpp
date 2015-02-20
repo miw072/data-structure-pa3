@@ -5,6 +5,7 @@
  * Note that '<' is used for priority compare.
  */
 
+
 #include "HCNode.hpp"
 
 //overload the operator ' <'

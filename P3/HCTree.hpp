@@ -1,3 +1,8 @@
+/**
+ * HCNode.hpp for PA3
+ * Author: Mingxuan Wang(A53077257) & Jingjue Wang(A97007709) 2015/2/11
+ */
+ 
 #ifndef HCTREE_HPP
 #define HCTREE_HPP
 
