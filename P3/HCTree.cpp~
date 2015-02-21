@@ -76,7 +76,7 @@ void HCTree::build(const vector<int>& freqs){
 }
 
 /*
- * HCTree::encode(byte symbol, BitOutputStream& out) const;
+ * HCTree::encode(byte symbol, ofstream& out) const;
  * This method is to encode a given byte using the HCTree built above
  * Input: symbol is the byte to be encoded, out is the output file stream used to write code to a file
  * Note this method is for FINALSUBMISSION

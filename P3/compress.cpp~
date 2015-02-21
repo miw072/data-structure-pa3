@@ -113,7 +113,7 @@ int main(int argc, char* argv[]){
          hcTree.encode(ch, out);
          ch = ifs.get();
 	 }
-	 out.flush();
+		//ofs.put(255);
    
 	 if (!ifs.eof()){
 	     printf("error: cannot read the end of file!\n");

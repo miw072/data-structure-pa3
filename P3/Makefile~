@@ -28,8 +28,6 @@ HCTree.o: HCNode.hpp HCTree.hpp BitOutputStream.hpp
 
 HCNode.o: HCNode.hpp
 
-BitOutputStream.o: BitOutputStream.hpp
-
 clean:
 	rm -f compress uncompress *.o core*
 

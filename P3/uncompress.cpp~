@@ -59,8 +59,8 @@ int main(int argc, char* argv[]){
   hcTree.build(freqs);
   
   //declare output file stream and open the outfile
-  std::ofstream ofs;
-  ofs.open(outfile, std::ofstream::out | std::ofstream::app);
+	std::ofstream ofs;
+	ofs.open(outfile, std::ofstream::out | std::ofstream::app);
  
   unsigned int total = 0;
   for (int i = 0; i < freqs.size(); i++){

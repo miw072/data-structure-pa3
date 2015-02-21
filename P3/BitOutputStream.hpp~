@@ -27,6 +27,8 @@ class BitOutputStream{
         BitOutputStream(ostream &output):out(output){
             buffer.reset();
             count = 7;
+            totalBits = 0;
+            code = "";
         }
         
         void put(char bit);
