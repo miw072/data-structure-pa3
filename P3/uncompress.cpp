@@ -48,7 +48,8 @@ int main(int argc, char* argv[]){
   //declare iuput file stream and open the infile
   std::ifstream ifs;
   ifs.open (infile, std::ifstream::in | std::ifstream::binary);
-	
+  BitInputStream input(ifs);
+  	
   //create a int vector of frequency of each symbol
   vector<int> freqs(256, 0);
 	
@@ -70,7 +71,7 @@ int main(int argc, char* argv[]){
   if (ifs.is_open()){
 		
     for (int i = 0; i < total; i++){
-      ofs.put((unsigned char)hcTree.decode(ifs));
+      ofs.put((unsigned char)hcTree.decode(input));
     }
 		
 	}else{
