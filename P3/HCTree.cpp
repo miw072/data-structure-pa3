@@ -115,13 +115,13 @@ void HCTree::encode(byte symbol, BitOutputStream& out) const{
  * Note this method is for FINALSUBMISSION
 
  */
-int HCTree::decode(ifstream& in) const{
+int HCTree::decode(BitInputStream& in) const{
   HCNode* current = root;
   int currentBit;
   
   //traverse the tree from root to leaves, find the symbol along the path
   while(current->c0 || current->c1){
-    currentBit = in.get() - '0';
+    currentBit = in.getBit() - '0';
     if (currentBit == 1){
       current = current->c1;
     }else if (currentBit == 0){

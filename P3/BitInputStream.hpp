@@ -9,8 +9,7 @@
 
 #include <iostream>
 #include <fstream>
-#include <string>
-#include <bitset>
+
 
 typedef unsigned char byte;
 
@@ -19,18 +18,18 @@ using namespace std;
 class BitInputStream{
     private :
         istream &in;
-        bitset<8> buffer;
-        int count;
+        char buffer;
+        int nbits;
         
     public :
-        BitInputStream(istream &input, unsigned int total): in(input){
-            buffer.reset();
-            count = 0;
+        BitInputStream(istream &input): in(input){
+            buffer = 0;
+            nbits =0;
         }
         
         void fill();
         
-        bool getBit();
+        int getBit();
         
         //bool isEmpty();
 };
