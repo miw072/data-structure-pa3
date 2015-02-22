@@ -121,7 +121,9 @@ int HCTree::decode(BitInputStream& in) const{
   
   //traverse the tree from root to leaves, find the symbol along the path
   while(current->c0 || current->c1){
-    currentBit = in.getBit() - '0';
+  
+    currentBit = in.getBit();
+    //printf("%d\n",currentBit);
     if (currentBit == 1){
       current = current->c1;
     }else if (currentBit == 0){
@@ -130,6 +132,7 @@ int HCTree::decode(BitInputStream& in) const{
       return -1;
     }
   }
+  //printf("%c", current->symbol);
   return (int)current->symbol;
 }
 

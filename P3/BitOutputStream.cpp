@@ -12,7 +12,7 @@ void BitOutputStream::put(char i){
     if(count < 0){
         flush();
     }
-
+    //printf("%c", i);
     if (i == '0'){
         buffer.set(count, 0);
         count--;
@@ -23,8 +23,8 @@ void BitOutputStream::put(char i){
 }
 
 void BitOutputStream::flush(){
-    unsigned int num = buffer.to_ulong();
-    unsigned char ch = (unsigned char) num;
+    unsigned long int num = buffer.to_ulong();
+    unsigned char ch = static_cast<unsigned char>(num);
     out.put(ch);
     count = 7;
 }

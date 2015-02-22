@@ -48,7 +48,6 @@ int main(int argc, char* argv[]){
   //declare iuput file stream and open the infile
   std::ifstream ifs;
   ifs.open (infile, std::ifstream::in | std::ifstream::binary);
-  BitInputStream input(ifs);
   	
   //create a int vector of frequency of each symbol
   vector<int> freqs(256, 0);
@@ -62,7 +61,8 @@ int main(int argc, char* argv[]){
   //declare output file stream and open the outfile
   std::ofstream ofs;
   ofs.open(outfile, std::ofstream::out | std::ofstream::app);
- 
+  BitInputStream input(ifs);
+  
   unsigned int total = 0;
   for (int i = 0; i < freqs.size(); i++){
     total += freqs[i];

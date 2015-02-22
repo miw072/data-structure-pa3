@@ -18,18 +18,18 @@ using namespace std;
 class BitInputStream{
     private :
         istream &in;
-        char buffer;
+        unsigned char buffer;
         int nbits;
         
     public :
         BitInputStream(istream &input): in(input){
             buffer = 0;
-            nbits =0;
+            nbits = 8;
         }
         
         void fill();
         
-        int getBit();
+        char getBit();
         
         //bool isEmpty();
 };

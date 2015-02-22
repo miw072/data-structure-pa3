@@ -12,12 +12,13 @@ void BitInputStream::fill(){
 	buffer = in.get();
 	nbits = 0;
 }
-
-int BitInputStream::getBit(){
+char BitInputStream::getBit(){
 	if(nbits == 8){
 	    fill();
 	}
 	
 	nbits++;
-	return ((buffer >> (8-nbits)) & 1);
+  
+  //printf("%d", (int)((buffer >> (8 - nbits)) & 1));
+	return ((buffer >> (8 - nbits)) & 1);
 }
