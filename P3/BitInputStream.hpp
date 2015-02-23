@@ -27,11 +27,17 @@ class BitInputStream{
             nbits = 8;
         }
         
+        /* BitInputStream::fill()
+         * This method is to fill in the buffer when necessary 
+         */
         void fill();
-        
+    
+        /* BitInputStream::getBIt()
+         * This method is to read a bit from the buffer
+         * Output: a bit of 0 or 1 present as char 
+         */
         char getBit();
         
-        //bool isEmpty();
 };
 
 

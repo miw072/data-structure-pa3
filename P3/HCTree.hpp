@@ -35,7 +35,8 @@ class HCTree {
 private:
     HCNode* root;
     vector<HCNode*> leaves;
-    int count = 0;
+    int countBits = 0;
+    int countBytes = 0;
 
 public:
     explicit HCTree() : root(0) {
@@ -43,9 +44,26 @@ public:
     }
 
     ~HCTree();
+    
     /** Access method to private variable count.
      */
     int getCount();
+    
+    
+    /*
+     * HCTree::rebuild(queue<int>& header, bool isSingle):
+     * This method is to rebuild the tree acoording to the header 
+     * Input: header is a queue contains information of header, 
+     *        isSingle is a bool variable indicates whether there is only one node is the tree
+     */
+    HCNode* rebuild(queue<int>& header, bool isSingle);
+    
+    /*
+     * HCTree::writeHeader(BitOutputStream& out):
+     * This method is to write the structure of the HCTree as header to file
+     * Input: out is the output bit stream used to write code to a file
+     */
+    void writeHeader(BitOutputStream& out);
     
     /** Use the Huffman algorithm to build a Huffman coding trie.
      *  PRECONDITION: freqs is a vector of ints, such that freqs[i] is 
@@ -69,7 +87,7 @@ public:
      *  THIS METHOD IS USEFUL FOR THE CHECKPOINT BUT SHOULD NOT 
      *  BE USED IN THE FINAL SUBMISSION.
      */
-   // void encode(byte symbol, ofstream& out) const;
+    // void encode(byte symbol, ofstream& out) const;
 
 
     /** Return symbol coded in the next sequence of bits from the stream.

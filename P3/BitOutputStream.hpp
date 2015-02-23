@@ -29,11 +29,22 @@ class BitOutputStream{
             count = 7;
         }
         
+        /* BitOutputStream::put(char i)
+         * This method is to put a bit to the buffer 
+         * Input: the bit to be put in present as char
+         */
         void put(char bit);
         
+        /* BitOutputStream::flush()
+         * This method is to flush the buffer out as a byte 
+         */
         void flush();
         
-        //void writeToFile(); 
+        /* BitOutputStream::writeByte(byte ch)
+         * This method is to write a byte to buffer, for header-writing use
+         * Input: the byte to be wrttien
+         */        
+        void writeByte(byte ch);
 };
 
 

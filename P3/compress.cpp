@@ -28,25 +28,7 @@ void writeInt(ofstream &out, int num){
   out.put(c);
 }
 
-/* writeHeader
- * This method is to write the header to the output file
- * The foramt is : first write the total number of ints to output file,
-                   then write each freqs[i] which is not 0 to outputfile together with the char
- * Input: out is the output stream, freqs is the vector of each char's frequency, count is the number of freqs[i]!=0
- */
-void writeHeader(ofstream &out, vector<int> &freqs, int count){
-  writeInt(out, count);
-  for (int i = 0; i < freqs.size(); i++){
-    
-    if (freqs[i]){
-      unsigned char c = i;
-      out.put(c);
-      
-      int num = freqs[i];
-      writeInt(out, num);
-    }
-  }
-}
+
 
 /* main
  * This method is the main method of command line program 
@@ -89,6 +71,12 @@ int main(int argc, char* argv[]){
 		printf("error: cannot open file\n");
 	}
 	
+  //calculate the total value of symbol, used for loop-controling in uncompress
+  unsigned int total = 0;
+  for (int i = 0; i < freqs.size(); i++){
+    total += freqs[i];
+  }
+  
 	//build the Huffman Code Tree
 	HCTree hcTree;
 	hcTree.build(freqs);
@@ -99,28 +87,33 @@ int main(int argc, char* argv[]){
  
   //declare output file stream and open the outfile
 	std::ofstream ofs;
-	ofs.open(outfile, std::ofstream::out | std::ofstream::app);
-	
-  //write header
-  writeHeader(ofs, freqs, hcTree.getCount());  
+	ofs.open(outfile, std::ofstream::out | std::ofstream::app | std::ofstream::binary);
   
+  //write total and the number of bits of header to outfile
+	writeInt(ofs, total);
+  writeInt(ofs, hcTree.getCount());
+ 
   BitOutputStream out(ofs);
-  //encode the infile
   
+  //write header to outfile
+  hcTree.writeHeader(out);
+  
+  //encode the infile
   if (ifs.is_open()){
      unsigned char ch = ifs.get();	
-	 while (ifs.good()){
+	   while (ifs.good()){
          hcTree.encode(ch, out);
          ch = ifs.get();
-	 }
-	 out.flush();
+	   }
+     //need to flush everything left in the buffer
+	   out.flush();
    
-	 if (!ifs.eof()){
-	     printf("error: cannot read the end of file!\n");
-		 return -1;
+	   if (!ifs.eof()){
+	       printf("error: cannot read the end of file!\n");
+		     return -1;
      }
   }else{
-	printf("error: cannot open file\n");
+	    printf("error: cannot open file\n");
   }
   
   //close infile and outfile
